@@ -1,40 +1,34 @@
 <html>
 <head>
 </head>
-<body background="France_map.png">
+<body>
 <style type="text/css">
 color:black;
 background-color:white;
 background-image:url("France_map.png");
 background-repeat:no-repeat;
 </style>
-	
+<div>
+
+<center><img src="French election.jpg"></center>
 <div id="chartContainer">
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
   <script type="text/javascript">
     var svg = dimple.newSvg("#chartContainer", 700, 500);
-    d3.tsv("data/example_data.tsv", function (data) {
+    d3.tsv("example_data.tsv", function (data) {
       var myChart = new dimple.chart(svg, data);
       myChart.setBounds(120, 50, 480, 330)
       my_axis=myChart.addMeasureAxis("x", "Votes");
-	  my_axis.title="Votes millions"
+	  my_axis.title="Votes (millions)"
       myChart.addCategoryAxis("y", ["Candidates", "Round"]);
       s=myChart.addSeries("Round", dimple.plot.bar);
 	  s.addOrderRule(["Candidates", "Round"], true);
 	  myChart.addLegend(200, 40, 510, 200, "right");
-	  
-	  d3.select('svg')
-		.append("text")
-		.text("French presidential 2017")
-		.attr('x',250)
-		.attr('y',20)
-		.attr("font-family", "sans-serif")
-		.attr("font-size", "20px")
-		.attr("fill", "red");
-	  
+  
 	  myChart.draw();
     });
+
 
   </script>
 
